@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  height: 100vh;
+}
+
+@layer components {
+  .header {
+    @apply text-2xl text-slate-400 my-4 text-center;
+  }
+
+  .box {
+    @apply bg-slate-700 p-4 rounded-xl text-slate-50 text-sm overflow-hidden;
+  }
+
+  .btn__primary {
+    @apply bg-sky-300 text-black px-4 py-2 rounded-lg;
+  }
+
+  .btn__primary:hover {
+    @apply bg-sky-500 text-white;
+  }
+
+  .btn__outline {
+    @apply border border-slate-700 text-slate-700 px-4 py-2 rounded-lg;
+  }
+
+  .btn__outline:hover {
+    @apply bg-slate-200;
+  }
+
+  .btn__warning {
+    @apply bg-amber-300 text-black px-4 py-2 rounded-lg;
+  }
+
+  .btn__warning:hover {
+    @apply bg-amber-500 text-white;
+  }
+
+  .btn__danger {
+    @apply bg-red-300 text-black px-4 py-2 rounded-lg;
+  }
+  .btn__danger:hover {
+    @apply bg-red-500 text-white;
+  }
+
+  .field {
+    @apply border border-slate-300 text-slate-50 px-4 py-2 rounded-lg;
+  }
+}
