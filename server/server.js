@@ -43,7 +43,7 @@ app.delete('/api/users/:id', (req, res) => {
 app.post('/api/users', (req, res) => {
   const { name } = req.body;
   if (!name) {
-    return res.status(400).send('Name is required');
+    return res.status(400).send({ error: 'Name is required' });
   }
 
   // get max id and increment by 1

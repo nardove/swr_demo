@@ -15,6 +15,10 @@
     @apply bg-slate-700 p-4 rounded-xl text-slate-50 text-sm overflow-hidden;
   }
 
+  .btn {
+    @apply cursor-pointer text-nowrap;
+  }
+
   .btn__primary {
     @apply bg-sky-300 text-black px-4 py-2 rounded-lg;
   }
@@ -47,6 +51,6 @@
   }
 
   .field {
-    @apply border border-slate-300 text-slate-50 px-4 py-2 rounded-lg;
+    @apply border w-3/4 border-slate-300 text-slate-50 px-4 py-2 rounded-lg;
   }
 }
