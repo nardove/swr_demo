@@ -7,10 +7,13 @@
 }
 
 @layer components {
-  .header {
-    @apply text-2xl text-slate-400 my-4 text-center;
+  .box-wrapper {
+    @apply grid gap-4 grid-cols-1 md:grid-cols-2 auto-rows-min md:auto-rows-fr h-full items-start px-4;
   }
 
+  .box-container {
+    @apply w-full md:w-10/12 mx-auto p-4 bg-slate-200 rounded-xl mt-4;
+  }
   .box {
     @apply bg-slate-700 p-4 rounded-xl text-slate-50 text-sm overflow-hidden;
   }
@@ -20,7 +23,7 @@
   }
 
   .btn {
-    @apply cursor-pointer text-nowrap;
+    @apply cursor-pointer text-nowrap min-w-28;
   }
 
   .btn__primary {
@@ -52,6 +55,14 @@
   }
   .btn__danger:hover {
     @apply bg-red-500 text-white;
+  }
+
+  .header {
+    @apply text-2xl text-slate-400 mb-4 text-center;
+  }
+
+  .controls-container {
+    @apply md:col-span-2 mx-auto w-full h-full content-center mt-4 md:mt-0;
   }
 
   .field {
