@@ -28,16 +28,31 @@ function Controls() {
     const id = e.target[0].value;
     e.target[0].value = '';
 
-    await del.trigger(id);
+    await del.trigger(id || null);
+  };
+
+  const hangleOnFormChange = (e) => {
+    e.preventDefault();
+
+    add.error && add.reset();
+    del.error && del.reset();
   };
 
   return (
     <div className="flex flex-col gap-4 justify-around mb-4 md:mt-0 md:w-2/4 mx-auto">
-      {add.error && <div className="text-red-500">Failed to add user</div>}
+      {add.error && (
+        <div className="box box__error">{`ERROR: ${add.error.response.data.error}`}</div>
+      )}
 
-      {del.error && <div className="text-red-500">Failed to delete user</div>}
+      {del.error && (
+        <div className="box box__error">{`ERROR: ${del.error.response.data.error}`}</div>
+      )}
 
-      <form onSubmit={handleAddUser} className="flex">
+      <form
+        onSubmit={handleAddUser}
+        onChange={hangleOnFormChange}
+        className="flex"
+      >
         <input
           className="field me-4 text-black"
           type="text"
@@ -48,7 +63,11 @@ function Controls() {
         </button>
       </form>
 
-      <form onSubmit={handleDeleteUser} className="flex">
+      <form
+        onSubmit={handleDeleteUser}
+        onChange={hangleOnFormChange}
+        className="flex"
+      >
         <input
           className="field me-4 text-black"
           type="number"

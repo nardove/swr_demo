@@ -15,6 +15,10 @@
     @apply bg-slate-700 p-4 rounded-xl text-slate-50 text-sm overflow-hidden;
   }
 
+  .box__error {
+    @apply w-full bg-red-200  text-red-500;
+  }
+
   .btn {
     @apply cursor-pointer text-nowrap;
   }

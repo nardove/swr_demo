@@ -31,9 +31,11 @@ app.get('/api/users', (req, res) => {
 // Delete user by id
 app.delete('/api/users/:id', (req, res) => {
   const id = Number(req.params.id);
+
   const index = data.users.findIndex((user) => user.id === id);
-  if (index === -1) {
-    return res.status(404).send('User not found');
+  console.log('index', index);
+  if (index === -1 || !id) {
+    return res.status(404).send({ error: 'User not found' });
   }
   data.users.splice(index, 1);
   res.status(200).json({ ok: true, id });
@@ -42,6 +44,7 @@ app.delete('/api/users/:id', (req, res) => {
 // Create new user
 app.post('/api/users', (req, res) => {
   const { name } = req.body;
+
   if (!name) {
     return res.status(400).send({ error: 'Name is required' });
   }
@@ -55,7 +58,7 @@ app.post('/api/users', (req, res) => {
 
 // Trow 500 error
 app.get('/api/broken', (req, res) => {
-  res.status(500).send('Internal Server Error');
+  res.status(500).send({ error: 'Internal Server Error' });
 });
 
 app.listen(PORT, () => {
