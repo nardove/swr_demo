@@ -58,7 +58,11 @@ function Controls() {
           type="text"
           placeholder="Enter your name"
         />
-        <button className="btn btn__primary grow" type="submit">
+        <button
+          className="btn btn__primary grow"
+          disabled={add.isMutating}
+          type="submit"
+        >
           Add user
         </button>
       </form>
@@ -74,10 +78,15 @@ function Controls() {
           step={1}
           placeholder="Enter user id to delete"
         />
-        <button className="btn btn__danger grow" type="submit">
+        <button
+          className="btn btn__danger grow"
+          disabled={del.isMutating}
+          type="submit"
+        >
           Delete user
         </button>
       </form>
+
       <button className="btn btn__warning" onClick={handleResetData}>
         Reset data
       </button>

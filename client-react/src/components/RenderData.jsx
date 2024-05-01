@@ -1,8 +1,30 @@
 import PropTypes from 'prop-types';
+import gsap from 'gsap';
+import { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
 
 function RenderData({ data }) {
+  const containerRef = useRef(null);
+
+  useGSAP(
+    () => {
+      gsap.fromTo(
+        '.box',
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: 'back',
+        }
+      );
+    },
+    { dependencies: [data], scope: containerRef }
+  );
+
   return (
-    <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <ul className="grid grid-cols-1 md:grid-cols-2 gap-3" ref={containerRef}>
       {data?.map((user) => (
         <li key={user.id} className="box">
           <code>
