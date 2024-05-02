@@ -19,7 +19,18 @@ function Controls() {
     const name = e.target[0].value;
     e.target[0].value = '';
 
-    await add.trigger(name);
+    await add.trigger(name, {
+      optimisticData: (prevData) => {
+        const id =
+          prevData.users.reduce(
+            (acc, user) => (user.id > acc ? user.id : acc),
+            0
+          ) + 1;
+        return {
+          users: [...prevData.users, { id, name: `${name} optimistic` }],
+        };
+      },
+    });
   };
 
   const handleDeleteUser = async (e) => {

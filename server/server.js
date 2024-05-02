@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = 8080;
+const { getLastId } = require('../utils/index');
 
 const originalUsers = [
   { id: 1, name: 'John Doe' },
@@ -33,7 +34,7 @@ app.delete('/api/users/:id', (req, res) => {
   const id = Number(req.params.id);
 
   const index = data.users.findIndex((user) => user.id === id);
-  console.log('index', index);
+
   if (index === -1 || !id) {
     return res.status(404).send({ error: 'User not found' });
   }
@@ -49,9 +50,8 @@ app.post('/api/users', (req, res) => {
     return res.status(400).send({ error: 'Name is required' });
   }
 
-  // get max id and increment by 1
-  const id =
-    data.users.reduce((acc, user) => (user.id > acc ? user.id : acc), 0) + 1;
+  const id = getLastId(data.users);
+
   data.users.push({ id, name });
   res.status(201).json({ ok: true, id, name });
 });
