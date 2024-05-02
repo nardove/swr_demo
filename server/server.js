@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const PORT = 8080;
-const { getLastId } = require('../utils/index');
 
 const originalUsers = [
   { id: 1, name: 'John Doe' },
@@ -50,7 +49,8 @@ app.post('/api/users', (req, res) => {
     return res.status(400).send({ error: 'Name is required' });
   }
 
-  const id = getLastId(data.users);
+  const id =
+    data.users.reduce((acc, user) => (user.id > acc ? user.id : acc), 0) + 1;
 
   data.users.push({ id, name });
   res.status(201).json({ ok: true, id, name });
